@@ -173,11 +173,11 @@ $\lambda = 0$ and the output of `lm()`; this is due to numerical approximation o
 `glmnet()`.
 
 ```{r}
-ridge_pred = predict(ridge_mod, s = 0, newx = x_test, exact = T)
+ridge_pred = predict(ridge_mod, s = 0, x = x_train, y = y_train, newx = x_test, exact = T)
 mean((ridge_pred - y_test)^2)
 
 lm(Salary~., data = train)
-predict(ridge_mod, s = 0, exact = T, type="coefficients")[1:20,]
+predict(ridge_mod, s = 0, x = x_train, y = y_train, exact = T, type="coefficients")[1:20,]
 ```
 
 It looks like we are indeed improving over regular least-squares! Side note: in general, if we want to fit a (unpenalized) least squares model, then
